@@ -1,0 +1,77 @@
+BOOK REVIEW PROJECT
+--------------------
+PROMPT 1: 
+Act as senior frontend developer.
+You have to implement task 011_FE_SETUP.md under tasks folder to implement the product requirments. Business and technical PRDs are attached herewith. Please implement and test whether everything is setup correctly.
+Create/Update the status in fe_progress.md file under the tasks folder 
+
+PROMPT 2:
+Act as senior React frontend developer.
+Implement 012_FE_AUTH as per the business PRD, technical PRD and auth_api attached.
+You need to write the tests to ensure integration with the APIs are done correctly
+Please note the service is running under http://localhost:8000
+Update the status in fe_progress.md file under the tasks folder 
+
+PROMPT 2.1:
+Run the tests.
+
+PROMPT 3:
+Act as senior React frontend developer.
+Implement 013_FE_BOOK_BROWSE as per the business PRD, technical PRD and book_api attached. 
+The Homepage should have a list of books with the search & filter capabilities server side.
+You need to write the tests to ensure integration with the APIs are done correctly
+Please note the service is running under http://localhost:8000
+Update the status in fe_progress.md file under the tasks folder 
+
+PROMPT 3.1:
+Run the tests.
+
+PROMPT 4:
+Act as senior React frontend developer.
+Implement 014_FE_REVIEW as per the business PRD, technical PRD and review_api.md attached. 
+You need to write the tests to ensure integration with the APIs are done correctly
+Please note the service is running under http://localhost:8000
+Update the status in fe_progress.md file under the tasks folder 
+
+PROMPT 4.2:
+
+Implement the following for the Book Review Platform:
+
+On the book listing page, display each book’s average rating and number of reviews using data from the backend (not calculated on the frontend).
+
+If a book has no ratings, show “Not rated yet”.
+If ratings exist, show the average rating and total number of reviews.
+When a user submits a new review/rating for a book:
+
+Immediately update the book’s average rating and review count in the book list/table (optimistic UI update).
+Ensure the frontend fetches the updated book data from the backend after review submission.
+Use the provided review API service (reviewService.ts) for all review-related operations.
+
+The UI should be responsive and user-friendly, with clear feedback for rating and review actions.
+
+Write integration tests to verify:
+
+Ratings and review counts are displayed correctly.
+“Not rated yet” appears for books with no ratings.
+Book list/table updates after a new review is submitted.
+
+PROMPT 4.1:
+Run the tests.
+
+PROMPT 5:
+Act as senior React frontend developer.
+Implement 015_FE_PROFILE as per the business PRD, technical PRD and profile_api.md attached. 
+You need to write the tests to ensure integration with the APIs are done correctly and run them
+Please note the service is running under http://localhost:8000
+Update the status in fe_progress.md file under the tasks folder 
+
+
+
+PROMPT 2.2:
+Give me the URL which I can test manually from the browser. Also, please start the server so that I can test.
+
+I see only the default page, no authentication form
+
+Registration is not working... I clicked on Registration link, entered email address and password but it says authentication failed. Please fix the issue.
+
+
