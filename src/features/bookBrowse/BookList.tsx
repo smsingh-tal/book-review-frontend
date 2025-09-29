@@ -141,7 +141,7 @@ const BookList: React.FC = () => {
                   />
                 </Box>
               ) : (
-                <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' }, gap: 3, width: '100%', minHeight: 600 }}>
+                <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' }, gap: 1.5, width: '100%', minHeight: 600 }}>
                   {books.map((book, idx) => {
                     const handleClick = () => setSelectedBookId(book.id);
                     const isFavorite = favoriteIds.includes(book.id);

@@ -3,12 +3,13 @@ import { useState, lazy, Suspense } from 'react';
 import { authService } from './services/authService';
 import BookList from './features/bookBrowse/BookList';
 import { Box, Container, AppBar, Toolbar, Typography, Button } from '@mui/material';
+import RecommendationPage from './features/recommendation/RecommendationPage';
 
 const ProfilePage = lazy(() => import('./features/profile/ProfilePage'));
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [currentPage, setCurrentPage] = useState('books'); // 'books' or 'profile'
+  const [currentPage, setCurrentPage] = useState('books'); // 'books', 'recommendations', or 'profile'
 
   const handleLogout = async () => {
     await authService.logout();
@@ -48,6 +49,19 @@ function App() {
               onClick={() => setCurrentPage('books')}
             >
               Browse Books
+            </Button>
+            <Button 
+              color="inherit" 
+              sx={{ 
+                mx: 1,
+                bgcolor: currentPage === 'recommendations' ? 'primary.main' : 'transparent',
+                '&:hover': {
+                  bgcolor: currentPage === 'recommendations' ? 'primary.dark' : 'rgba(255,255,255,0.08)'
+                }
+              }}
+              onClick={() => setCurrentPage('recommendations')}
+            >
+              Recommendations
             </Button>
             <Button 
               color="inherit" 
@@ -94,6 +108,10 @@ function App() {
           currentPage === 'books' ? (
             <Box sx={{ width: '100%' }}>
               <BookList />
+            </Box>
+          ) : currentPage === 'recommendations' ? (
+            <Box sx={{ width: '100%' }}>
+              <RecommendationPage />
             </Box>
           ) : (
             <Suspense fallback={<Box sx={{ display: 'flex', justifyContent: 'center', py: 8 }}>Loading profile...</Box>}>

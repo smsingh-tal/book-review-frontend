@@ -18,7 +18,7 @@ interface BookGridItemProps {
 }
 
 const BookGridItem: React.FC<BookGridItemProps> = ({ book, isFavorite, onToggleFavorite }) => (
-  <Card sx={{ maxWidth: 320, m: 1, boxShadow: 3, borderRadius: 3, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+  <Card sx={{ height: '100%', boxShadow: 3, borderRadius: 3, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
     <CardHeader
       title={book.title}
       subheader={book.author}

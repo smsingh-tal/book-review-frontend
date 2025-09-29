@@ -59,8 +59,15 @@ PROMPT 4.1:
 Run the tests.
 
 PROMPT 5:
+Act as a senior frontend lead and update 007_FE_RECOMMEND task to cover for the following features
+o Top-rated books for the logged in user
+o Books similar to user's favourites or genres
+o Use LLM based service APIs like OpenAI to provide recommendations to the user
+Please update the task 007_FE_RECOMMEND.md file, and do not implement for now.
+
+PROMPT 5.1:
 Act as senior React frontend developer.
-Implement 015_FE_PROFILE as per the business PRD, technical PRD and profile_api.md attached. 
+Implement 015_FE_RECOMMEND as per the business PRD, technical PRD and recommendation_api.md attached. 
 You need to write the tests to ensure integration with the APIs are done correctly and run them
 Please note the service is running under http://localhost:8000
 Update the status in fe_progress.md file under the tasks folder 
