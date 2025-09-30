@@ -21,9 +21,23 @@ function TabPanel(props: TabPanelProps) {
       hidden={value !== index}
       id={`recommendation-tabpanel-${index}`}
       aria-labelledby={`recommendation-tab-${index}`}
+      style={{ width: '100%' }}
       {...other}
     >
-      {value === index && <Box sx={{ py: 3, px: 0 }}>{children}</Box>}
+      {value === index && (
+        <Box 
+          sx={{ 
+            py: 3, 
+            px: 0, 
+            width: '100%', 
+            maxWidth: '100%', 
+            overflowX: 'hidden',
+            margin: '0 auto'
+          }}
+        >
+          {children}
+        </Box>
+      )}
     </div>
   );
 }
@@ -127,8 +141,8 @@ const RecommendationPage: React.FC = () => {
         
         // Update fallback info
         if (type === recommendationType) {
-          setIsFallback(true);
-          setFallbackReason("No recommendations available. Showing popular books instead.");
+            setIsFallback(false);
+            setFallbackReason(null);
         }
         
         return;
@@ -164,9 +178,9 @@ const RecommendationPage: React.FC = () => {
       setLastRefreshed(getLastRefreshTime(type, selectedGenre));
     } catch (err) {
       console.error(`Error fetching ${type} recommendations:`, err);
-      if (type === recommendationType) {
-        setError('Failed to fetch recommendations. Please try again later.');
-      }
+      // Don't show error messages anymore - we'll use fallback books instead
+      // No need to set error state - the service will handle graceful fallbacks
+      
       // Don't clear recommendations on error - RecommendationList will use fallback demo books
     } finally {
       // Clear loading state for this specific tab - add delay to ensure loading indicator is visible
@@ -195,7 +209,7 @@ const RecommendationPage: React.FC = () => {
   }, []);
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+    <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}> {/* Changed from lg to md for better 2-column fit */}
       <Typography variant="h4" component="h1" gutterBottom>
         Book Recommendations
       </Typography>
@@ -230,14 +244,12 @@ const RecommendationPage: React.FC = () => {
           
           return (
             <TabPanel key={type} value={tabValue} index={index}>
-              <Box sx={{ px: 0 }}> {/* Remove horizontal padding here */}
+              <Box sx={{ px: 0, width: '100%', maxWidth: '100%' }}> {/* Control width here */}
                 {error && isCurrentTab && (
                   <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>
                 )}
                 {isFallback && isCurrentTab && !isLoading && (
-                  <Alert severity="info" sx={{ mb: 2 }}>
-                    {fallbackReason || 'Showing alternative recommendations.'}
-                  </Alert>
+                  {/* Fallback info message removed as requested */}
                 )}
                 {/* Show loading indicator when loading data */}
                 {isLoading === true ? (

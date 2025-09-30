@@ -90,10 +90,13 @@ const RecommendationList: React.FC<RecommendationListProps> = ({ recommendations
     return (
       <Box sx={{ 
         display: 'grid',
-        gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' },
-        gap: 2,
+        gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' }, // Only 2 columns at all sizes
+        gap: 3,
         width: '100%',
-        px: 3 // Consistent horizontal padding
+        px: 3, // Consistent horizontal padding
+        mx: 'auto', // Center the grid
+        maxWidth: '100%', // Ensure grid doesn't overflow
+        boxSizing: 'border-box' // Include padding in width calculation
       }}>
         {[...Array(4)].map((_, index) => (
           <RecommendationSkeleton key={`loading-${index}`} />
@@ -129,10 +132,13 @@ const RecommendationList: React.FC<RecommendationListProps> = ({ recommendations
   return (
     <Box sx={{ 
       display: 'grid',
-      gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' },
-      gap: 2,
+      gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' }, // Only 2 columns at all sizes
+      gap: 3,
       width: '100%',
-      px: 3 // Consistent horizontal padding
+      px: 3, // Consistent horizontal padding
+      mx: 'auto', // Center the grid
+      maxWidth: '100%', // Ensure grid doesn't overflow
+      boxSizing: 'border-box' // Include padding in width calculation
     }}>
       {booksToShow.map((book) => (
         <Box key={book?.book_id || Math.random()}>
