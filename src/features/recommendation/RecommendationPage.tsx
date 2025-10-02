@@ -72,8 +72,8 @@ const RecommendationPage: React.FC = () => {
   });
   
   const [error, setError] = useState<string | null>(null);
-  const [isFallback, setIsFallback] = useState(false);
-  const [fallbackReason, setFallbackReason] = useState<string | null>(null);
+  // Removed unused isFallback state
+  // Removed unused fallbackReason state
   const [selectedGenre, setSelectedGenre] = useState<string | undefined>(undefined);
   const [recommendationType, setRecommendationType] = useState<RecommendationType>('top_rated');
   const [lastRefreshed, setLastRefreshed] = useState<Date | null>(null);
@@ -139,11 +139,7 @@ const RecommendationPage: React.FC = () => {
           [type]: [] // Empty array will trigger the demo books in RecommendationList
         }));
         
-        // Update fallback info
-        if (type === recommendationType) {
-            setIsFallback(false);
-            setFallbackReason(null);
-        }
+  // Removed fallback info update
         
         return;
       }
@@ -170,10 +166,7 @@ const RecommendationPage: React.FC = () => {
       }));
       
       // Update fallback and last refreshed information
-      if (type === recommendationType) {
-        setIsFallback(response.is_fallback);
-        setFallbackReason(response.fallback_reason || null);
-      }
+  // Removed fallback info update
       
       setLastRefreshed(getLastRefreshTime(type, selectedGenre));
     } catch (err) {
@@ -239,18 +232,14 @@ const RecommendationPage: React.FC = () => {
           const typedType = type as RecommendationType;
           const isCurrentTab = typedType === recommendationType;
           const isLoading = loadingMap[typedType];
-          
           console.log(`Rendering ${typedType} tab, isLoading: ${isLoading}, current books: ${recommendationsMap[typedType]?.length || 0}`);
-          
           return (
             <TabPanel key={type} value={tabValue} index={index}>
               <Box sx={{ px: 0, width: '100%', maxWidth: '100%' }}> {/* Control width here */}
-                {error && isCurrentTab && (
-                  <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>
-                )}
-                {isFallback && isCurrentTab && !isLoading && (
-                  {/* Fallback info message removed as requested */}
-                )}
+                {/* Show Alert only after variables are declared */}
+                {Boolean(error) && isCurrentTab ? (
+                  <Alert severity="error" sx={{ mb: 2 }}>{error ?? ''}</Alert>
+                ) : null}
                 {/* Show loading indicator when loading data */}
                 {isLoading === true ? (
                   <Box sx={{ display: 'flex', justifyContent: 'center', my: 4, border: '1px solid #eee', p: 4, borderRadius: 2 }}>
@@ -260,7 +249,6 @@ const RecommendationPage: React.FC = () => {
                     </Typography>
                   </Box>
                 ) : (
-                  /* Show recommendations when loaded */
                   <RecommendationList 
                     recommendations={recommendationsMap[typedType]}
                     loading={false}
