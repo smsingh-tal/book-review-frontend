@@ -38,6 +38,6 @@ export const deleteReview = async (reviewId: number) => {
 };
 
 export const voteOnReview = async (reviewId: number, isHelpful: boolean) => {
-  const response = await api.post(`/reviews/${reviewId}/vote`, { is_helpful: isHelpful });
+    const response = await api.post(`/reviews/${reviewId}/vote`, { is_helpful: isHelpful });
   return response.data;
 };

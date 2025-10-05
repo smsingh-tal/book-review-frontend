@@ -36,7 +36,11 @@ export default function AuthForm({ onAuth }: { onAuth: () => void }) {
           return;
         }
         await authService.register(name, email, password);
-        setError('Registration successful! Please login.');
+        // Auto-login after registration
+        const loginResp = await authService.login(email, password);
+        // Store email in localStorage for review author identification
+        localStorage.setItem('user_email', email);
+        setError('Registration successful!');
         onAuth();
       }
     } catch (err: any) {
